@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 import "./App.css";
-import CartContextProvider, { CartContext } from "./store/CartContext";
-import Meals from "./componentss/Meals/Meals";
-import Cart from "./componentss/Cart/Cart";
-import Checkout from "./componentss/Checkout/Checkout";
+import CartContextProvider, { CartContext } from "../store/CartContext";
+import Meals from "./components/Meals";
+import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 import Modal from "./components/UI/Modal";
 
 function AppContent() {

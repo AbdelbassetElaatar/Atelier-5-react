@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { formattedPrice } from "../../util/formatting";
-import Button from "../../components/UI/Button";
+import Button from "./UI/Button";
 import { CartContext } from "../../store/CartContext";
 function MealItem({ meal }) {
   const cartCtx = useContext(CartContext);
@@ -24,7 +24,7 @@ function MealItem({ meal }) {
       <div className="h-56 overflow-hidden">
         <img
           src={`${
-            process.env.REACT_APP_BACKEND_URL || "http://localhost:3001"
+            import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
           }/${meal.image}`}
           alt={meal.name}
           className="w-full h-full object-cover"
@@ -48,8 +48,7 @@ function MealItem({ meal }) {
         <Button
           textOnly
           onClick={addToCartHandler}
-          // className="w-1/2 py-3 rounded-lg font-semibold text-black transition"
-          // style={{ backgroundColor: "#ffc304" }}
+          className="w-1/2 py-3 rounded-lg font-semibold transition bg-yellow-400 hover:bg-yellow-500 text-white"
         >
           Add to Cart
         </Button>
