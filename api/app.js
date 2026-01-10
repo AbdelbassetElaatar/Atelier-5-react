@@ -1,8 +1,8 @@
 import fs from 'node:fs/promises';
-
 import bodyParser from 'body-parser';
 import express from 'express';
-
+import path from "node:path";
+import process from "node:process";
 const app = express();
 
 app.use(bodyParser.json());
@@ -16,7 +16,8 @@ app.use((req, res, next) => {
 });
 
 app.get('/meals', async (req, res) => {
-  const meals = await fs.readFile('./data/available-meals.json', 'utf8');
+  const mealsPath = path.join(process.cwd(), 'api', 'data', 'available-meals.json');
+  const meals = await fs.readFile(mealsPath, 'utf8');
   res.json(JSON.parse(meals));
 });
 
@@ -53,9 +54,10 @@ app.post('/orders', async (req, res) => {
     ...orderData,
     id: (Math.random() * 1000).toString(),
   };
-  const orders = await fs.readFile('./data/orders.json', 'utf8');
-  const allOrders = JSON.parse(orders);
-  allOrders.push(newOrder);
+ const ordersPath = path.join(process.cwd(), "api", "data", "orders.json");
+ const orders = await fs.readFile(ordersPath, "utf8");
+ const allOrders = JSON.parse(orders);
+ allOrders.push(newOrder);
   await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
   res.status(201).json({ message: 'Order created!' });
 });
