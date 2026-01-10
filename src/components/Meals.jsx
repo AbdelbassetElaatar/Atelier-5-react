@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MealItem from "./Mealitem";
 
-// const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+// const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '/api';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "/api";
 
 function Meals() {
   const [meals, setMeals] = useState([]);
