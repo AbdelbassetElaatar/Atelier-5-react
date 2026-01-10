@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "/api";
 
 export const sendCheckoutData = async (customerData, cartData) => {
   try {
-    const response = await fetch(API_BASE_URL + "orders", {
+    const response = await fetch(`${API_BASE_URL}/orders`, {
       method: "POST",
       headers: {
         Accept: "application/json",
