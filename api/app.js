@@ -54,11 +54,11 @@ app.post('/orders', async (req, res) => {
     ...orderData,
     id: (Math.random() * 1000).toString(),
   };
- const ordersPath = path.join(process.cwd(), "api", "data", "orders.json");
+ const ordersPath = path.join(process.cwd(), "api", "data", "orders.json"); // Consistently use this
  const orders = await fs.readFile(ordersPath, "utf8");
  const allOrders = JSON.parse(orders);
  allOrders.push(newOrder);
-  await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
+  await fs.writeFile(ordersPath, JSON.stringify(allOrders));
   res.status(201).json({ message: 'Order created!' });
 });
 
