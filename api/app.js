@@ -2,8 +2,8 @@ import fs from "node:fs/promises";
 import bodyParser from "body-parser";
 import express from "express";
 import path from "node:path";
-import process from "node:process";
 import { fileURLToPath } from "node:url";
+import process from "node:process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -96,4 +96,7 @@ app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
 });
 
-export default app;
+// Vercel serverless expects a request handler export.
+export default function handler(req, res) {
+  return app(req, res);
+}
