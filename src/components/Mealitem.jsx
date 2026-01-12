@@ -23,7 +23,7 @@ function MealItem({ meal }) {
     >
       <div className="h-56 overflow-hidden">
         <img
-          src={`${import.meta.env.VITE_BACKEND_URL || "/api"}/${meal.image}`}
+          src={`/api/image?path=${encodeURIComponent(meal.image)}`}
           alt={meal.name}
           className="w-full h-full object-cover"
         />
