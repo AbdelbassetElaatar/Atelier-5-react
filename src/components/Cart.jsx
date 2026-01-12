@@ -3,12 +3,13 @@ import { CartContext } from "../../store/CartContext";
 import CartItem from "./Cartitem";
 function Cart({ onClose, onCheckout }) {
   const cartCtx = useContext(CartContext);
+  const totalItems = cartCtx.items.reduce((sum, it) => sum + it.quantity, 0);
   if (cartCtx.items.length === 0) {
-    return <p >your cart is empty </p>;
+    return <p>your cart is empty</p>;
   }
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-full">
-      <h1 className="text-2xl font-bold mb-4">your cart</h1>
+      <h1 className="text-2xl font-bold mb-4">your cart ({totalItems})</h1>
       <div className="space-y-2 max-h-96 overflow-y-auto">
         {cartCtx.items.map((it) => (
           <CartItem

@@ -33,6 +33,14 @@ function cartReducer(state, action) {
       return { ...state, items: newTab };
     }
     case cartActionsTypes.REMOVE_ITEM: {
+      const item = state.items.find((it) => it.id === action.payload);
+      if (!item) return state;
+      if (item.quantity > 1) {
+        const newItems = state.items.map((it) =>
+          it.id === action.payload ? { ...it, quantity: it.quantity - 1 } : it
+        );
+        return { ...state, items: newItems };
+      }
       return {
         ...state,
         items: state.items.filter((item) => item.id !== action.payload),
