@@ -4,7 +4,7 @@ import CartItem from "./Cartitem";
 function Cart({ onClose, onCheckout }) {
   const cartCtx = useContext(CartContext);
   if (cartCtx.items.length === 0) {
-    return <p>your cart is empty </p>;
+    return <p className="text-white">your cart is empty </p>;
   }
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-full">

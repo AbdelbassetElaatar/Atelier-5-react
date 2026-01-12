@@ -44,7 +44,7 @@ function MealItem({ meal }) {
         </p>
 
         <Button
-          textOnly
+          textOnly='text-white'
           onClick={addToCartHandler}
           className="w-1/2 py-3 rounded-lg font-semibold transition bg-yellow-400 hover:bg-yellow-500 text-white"
         >
