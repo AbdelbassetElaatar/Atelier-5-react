@@ -71,6 +71,7 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
               value={formData.name}
               onChange={handleChange}
             />
+
             <Input
               label={"Street"}
               type={"text"}
@@ -79,23 +80,26 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
               value={formData.street}
               onChange={handleChange}
             />
-            <Input
-              label={"Code Postal"}
-              type={"number"}
-              required={true}
-              name={"postal-code"}
-              value={formData["postal-code"]}
-              onChange={handleChange}
-            />
-            <Input
-              label={"City"}
-              type={"text"}
-              required={true}
-              name={"city"}
-              value={formData.city}
-              onChange={handleChange}
-            />
-
+            <div className="flex">
+              <Input
+                className="w-1/2"
+                label={"Code Postal"}
+                type={"number"}
+                required={true}
+                name={"postal-code"}
+                value={formData["postal-code"]}
+                onChange={handleChange}
+              />
+              <Input
+                className=" ml-2 w-1/2"
+                label={"City"}
+                type={"text"}
+                required={true}
+                name={"city"}
+                value={formData.city}
+                onChange={handleChange}
+              />
+            </div>
             <Button className="mt-5 float-end" type={"submit"}>
               Submit
             </Button>
@@ -105,7 +109,7 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
       <Modal isOpen={isSubmiteed}>
         <div className="w-full h-full bg-white p-8">
           <h1 className="font-bold text-lg mb-3">Congrats {formData.name}</h1>
-          <p>Your order has been submitted successfully!</p>
+          <p>Your order has been submitted successfully! ✅</p>
         </div>
       </Modal>
     </>

@@ -5,6 +5,7 @@ import Meals from "./components/Meals";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Modal from "./components/UI/Modal";
+import Header from "./components/header";
 
 function AppContent() {
   const [isOpenModel, setIsOpenModel] = useState(false);
@@ -21,13 +22,8 @@ function AppContent() {
 
   return (
     <>
-      <div className="p-4 bg-green-700">
-        <button
-          onClick={handleOpenModel}
-          className="bg-green-400 px-4 py-2 rounded font-bold mb-4"
-        >
-          Open Cart
-        </button>
+      <div className="p-4 bg-neutral-800">
+        <Header onOpenCart={handleOpenModel} />
 
         <Meals />
 
