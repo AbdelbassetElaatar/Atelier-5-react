@@ -36,6 +36,7 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
 
     if (response.status === 201) {
       setCheckoutIsOpen(false);
+      if (typeof onClose === "function") onClose();
       setIsSubmitted(true);
       // clear cart and auto-close success dialog after a short delay
       try {
@@ -45,7 +46,6 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
       }
       setTimeout(() => {
         setIsSubmitted(false);
-        onClose();
       }, 3000);
     }
   };
@@ -58,9 +58,18 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
         className="bg-neutral-100 rounded-md shadow-lg p-6"
       >
         <div className="w-full flex flex-col items-center justify-center gap-2">
-          <h1 className="font-bold text-2xl text-gray-700 text-center">
-            Checkout
-          </h1>
+          <div className="w-full flex justify-between items-center">
+            <h1 className="font-bold text-2xl text-gray-700">Checkout</h1>
+            <button
+              onClick={() => {
+                setCheckoutIsOpen(false);
+                if (typeof onClose === "function") onClose();
+              }}
+              className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+            >
+              close
+            </button>
+          </div>
           {errors.map((err, key) => (
             <p className="text-red-500 text-center font-bold" key={key}>
               {err}
@@ -118,8 +127,23 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
           </form>
         </div>
       </Modal>
-      <Modal isOpen={isSubmiteed}>
-        <div className="w-full h-full bg-white p-8">
+      <Modal
+        isOpen={isSubmiteed}
+        onClose={() => {
+          setIsSubmitted(false);
+          if (typeof onClose === "function") onClose();
+        }}
+      >
+        <div className="relative w-full h-full bg-white p-8">
+          <button
+            onClick={() => {
+              setIsSubmitted(false);
+              if (typeof onClose === "function") onClose();
+            }}
+            className="absolute top-3 right-3 px-2 py-1 rounded bg-gray-200 hover:bg-gray-300"
+          >
+            close
+          </button>
           <h1 className="font-bold text-lg mb-3">Congrats {formData.name}</h1>
           <p>Your order has been submitted successfully! ✅</p>
         </div>
