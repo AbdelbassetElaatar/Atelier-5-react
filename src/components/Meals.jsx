@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MealItem from "./Mealitem";
 
-// const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || '/api';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "/api";
+const rawBackend = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL =
+  rawBackend && /^https?:\/\//i.test(rawBackend) ? rawBackend : "/api";
 
 function Meals() {
   const [meals, setMeals] = useState([]);

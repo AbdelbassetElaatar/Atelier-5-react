@@ -1,4 +1,7 @@
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "/api";
+const rawBackend = import.meta.env.VITE_BACKEND_URL;
+// Default to relative /api; if provided, accept only absolute http(s) URLs
+const API_BASE_URL =
+  rawBackend && /^https?:\/\//i.test(rawBackend) ? rawBackend : "/api";
 
 export const sendCheckoutData = async (customerData, cartData) => {
   try {
