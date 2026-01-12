@@ -3,9 +3,13 @@ import bodyParser from "body-parser";
 import express from "express";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
-const dataDir = path.join(process.cwd(), "api", "data");
+const dataDir = path.join(__dirname, "data");
 const mealsPath = path.join(dataDir, "available-meals.json");
 const ordersSourcePath = path.join(dataDir, "orders.json");
 const ordersTargetPath = process.env.VERCEL
