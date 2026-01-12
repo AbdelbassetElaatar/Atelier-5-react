@@ -5,7 +5,20 @@ function Cart({ onClose, onCheckout }) {
   const cartCtx = useContext(CartContext);
   const totalItems = cartCtx.items.reduce((sum, it) => sum + it.quantity, 0);
   if (cartCtx.items.length === 0) {
-    return <p>your cart is empty</p>;
+    return (
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-full">
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl font-bold">your cart ({totalItems})</h1>
+          <button
+            onClick={onClose}
+            className="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 transition"
+          >
+            close
+          </button>
+        </div>
+        <p className="text-center py-8 text-gray-600">Your cart is empty</p>
+      </div>
+    );
   }
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-full">

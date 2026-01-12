@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Input from "./UI/Input";
 import Button from "./UI/Button";
 import { sendCheckoutData } from "../../hooks/useHttp";
 import Modal from "./UI/Modal";
+import { CartContext } from "../../store/CartContext";
 
 function Checkout({ checkoutOpen, cartData, onClose }) {
+  const cartCtx = useContext(CartContext);
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState([]);
 
@@ -35,6 +37,16 @@ function Checkout({ checkoutOpen, cartData, onClose }) {
     if (response.status === 201) {
       setCheckoutIsOpen(false);
       setIsSubmitted(true);
+      // clear cart and auto-close success dialog after a short delay
+      try {
+        cartCtx.clearCart();
+      } catch {
+        // ignore if context unavailable
+      }
+      setTimeout(() => {
+        setIsSubmitted(false);
+        onClose();
+      }, 3000);
     }
   };
 
