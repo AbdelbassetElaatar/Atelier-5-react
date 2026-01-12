@@ -48,8 +48,8 @@ function Meals() {
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-center mb-8">
-        Our Delicious Meals
+      <h2 className="text-3xl font-bold text-center mb-8 text-white">
+        Our  Meals
       </h2>
       <ul className="grid gap-16 sm:grid-cols-2 lg:grid-cols-3">
         {displayMeals()}
